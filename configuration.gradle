@@ -1,0 +1,47 @@
+ext {
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2"
+    ]
+    defaultConfig = [
+            applicationId   : "com.android.jc",
+            appIdDev        : "com.android.jcDev",
+            appIdUat        : "com.android.jcUat",
+            minSdkVersion   : 15,
+            targetSdkVersion: 26,
+            versionCode     : 1,
+            versionName     : "1.0"
+    ]
+
+    appName = [
+            uat: "JcApp测试",
+            dev: "JcApp开发",
+            prd: "JcApp生产"
+    ]
+    def dependVersion = [
+            support       : "26.1.0",
+            rxjava2       : "2.1.6",
+            rxandroid2    : "2.0.1",
+            okhttp3       : "3.6.0",
+            dagger2       : "2.0.2",
+            kotlin_version: "1.2.10"
+    ]
+    dependencies = [
+
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${dependVersion.kotlin_version}",
+            kotlinExtensions  : "org.jetbrains.kotlin:kotlin-android-extensions:${dependVersion.kotlin_version}",
+            kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:${dependVersion.kotlin_version}",
+            appcompat_v7      : "com.android.support:appcompat-v7:${dependVersion.support}",
+            rxjava2           : "io.reactivex.rxjava2:rxjava:${dependVersion.rxjava2}",
+            rxandroid2        : "io.reactivex.rxjava2:rxandroid:${dependVersion.rxandroid2}",
+            okhttp3           : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp3}",
+            dagger2           : "com.google.dagger:dagger:${dependVersion.dagger2}",
+            dagger2_compiler  : "com.google.dagger:dagger-compiler:${dependVersion.dagger2}",
+            annotation        : "org.glassfish:javax.annotation:10.0-b28"
+    ]
+
+
+}
+
+

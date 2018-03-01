@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId rootProject.ext.defaultConfig.appId
+        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
+        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
+        versionCode rootProject.ext.defaultConfig.versionCode
+        versionName rootProject.ext.defaultConfig.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        /*自定义打包名称*/
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+
+                    // apk_渠道名-版本号-版本名称-编译时间.apk
+                    def channel = variant.productFlavors[0].name
+                    def versionCode = defaultConfig.versionCode
+                    def versionName = defaultConfig.versionName
+                    def currentTime = releaseTime()
+                    def appName = getAppNameByChannel(channel)
+                    def fileName = "${appName}_${versionCode}_(${versionName}-${currentTime}).apk"
+                    outputFileName = new File(outputFile.parent, fileName)
+                }
+            }
+        }
+
+    }
+
+    productFlavors {
+        _test {
+            applicationId rootProject.ext.defaultConfig.appIdUat
+        }
+        _dev {
+            applicationId rootProject.ext.defaultConfig.appIdDev
+        }
+    }
+
+
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.dependencies.appcompat_v7
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile project(':utils')
+//    implementation project(':rxjava2')
+}
+task A {
+    print("hello word!")
+}
+
+
+static def releaseTime() {
+    def date = new Date()
+    return date.toGMTString()
+}
+
+def  getAppNameByChannel(def name) {
+    def appName = name
+    if ("_test" == name) {
+        appName = rootProject.ext.appName.uat
+    } else if ("_dev" == name) {
+        appName = rootProject.ext.appName.dev
+    }
+    return appName
+}
