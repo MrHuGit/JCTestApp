@@ -8,7 +8,7 @@ ext {
             applicationId   : "com.android.jc",
             appIdDev        : "com.android.jcDev",
             appIdUat        : "com.android.jcUat",
-            minSdkVersion   : 15,
+            minSdkVersion   : 16,
             targetSdkVersion: 26,
             versionCode     : 1,
             versionName     : "1.0"
@@ -20,12 +20,13 @@ ext {
             prd: "JcApp生产"
     ]
     def dependVersion = [
+            latest        : "+",
             support       : "26.1.0",
             rxjava2       : "2.1.6",
             rxandroid2    : "2.0.1",
             okhttp3       : "3.6.0",
             dagger2       : "2.0.2",
-            kotlin_version: "1.2.10"
+            kotlin_version: "1.2.30"
     ]
     dependencies = [
 

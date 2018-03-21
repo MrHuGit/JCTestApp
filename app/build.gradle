@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -41,16 +45,51 @@ android {
     productFlavors {
         _test {
             applicationId rootProject.ext.defaultConfig.appIdUat
+            resValue 'string', 'app_name', rootProject.ext.appName.uat
         }
         _dev {
             applicationId rootProject.ext.defaultConfig.appIdDev
+            resValue 'string', 'app_name', rootProject.ext.appName.dev
         }
     }
 
 
 }
 
+MobSDK {
+    appKey "d580ad56b4b5"
+    appSecret "7fcae59a62342e7e2759e9e397c82bdd"
 
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            SinaWeibo {
+                appKey "568898243"
+                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+                callbackUri "http://www.sharesdk.cn"
+                shareByAppClient false
+            }
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+            QQ {
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+            }
+            QZone{
+                appId "100371282"
+                appKey "aed9b0303e3ed1e27bae87c33761161d"
+            }
+            Facebook {
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+            }
+        }
+    }
+
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -61,7 +100,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':utils')
-//    implementation project(':rxjava2')
+    compile rootProject.ext.dependencies.kotlinStdlib
+    //    implementation project(':rxjava2')
+    implementation project(':GoogleBasicRxJavaSample')
 }
 task A {
     print("hello word!")

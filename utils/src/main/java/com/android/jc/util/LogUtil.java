@@ -10,7 +10,7 @@ import android.util.Log;
  */
 
 public class LogUtil {
-    private final static String TAG="hujiecai";
+    private final static String TAG="JC";
     private static boolean DEBUG=true;
     public static void i(String... value){
         if (DEBUG){
@@ -19,9 +19,13 @@ public class LogUtil {
     }
     private static String appendValue(String... value){
         StringBuilder stringBuilder=new StringBuilder();
+        String result="";
         for (String s:value){
             stringBuilder.append(s).append(",");
         }
-        return stringBuilder.toString();
+        if (stringBuilder.length()>0){
+            result=stringBuilder.substring(0,stringBuilder.length()-1);
+        }
+        return result;
     }
 }

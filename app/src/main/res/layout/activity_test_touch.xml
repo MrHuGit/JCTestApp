@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.jc.test.CustomViewGroup
+    android:id="@+id/customViewGroup"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ff00"
+    android:gravity="center">
+
+    <com.android.jc.test.CustomView
+        android:id="@+id/customView"
+        android:background="#ff0000"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+</com.android.jc.test.CustomViewGroup>

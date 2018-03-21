@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
+import com.android.jc.util.LogUtil;
+
 /**
  * @author Mr.Hu(Jc)
  * @create 2018/3/1 10:16
@@ -27,17 +29,20 @@ public class CustomViewGroup extends LinearLayout{
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        LogUtil.i("CustomViewGroup,dispatchTouchEvent()",String.valueOf(event.getAction()));
+        return super.dispatchTouchEvent(event);
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        LogUtil.i("CustomViewGroup,onInterceptTouchEvent()",String.valueOf(event.getAction()));
+        return super.onInterceptTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        LogUtil.i("CustomViewGroup,onTouchEvent()",String.valueOf(event.getAction()));
         return super.onTouchEvent(event);
     }
 }

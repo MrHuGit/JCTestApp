@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -40,5 +41,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile rootProject.ext.dependencies.kotlinStdlib
     testCompile 'junit:junit:4.12'
 }
