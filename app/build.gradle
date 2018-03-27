@@ -5,14 +5,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.mob.sdk'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    compileSdkVersion defaultConfigs.compileSdkVersion
+    buildToolsVersion defaultConfigs.buildToolsVersion
     defaultConfig {
-        applicationId rootProject.ext.defaultConfig.appId
-        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
-        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
-        versionCode rootProject.ext.defaultConfig.versionCode
-        versionName rootProject.ext.defaultConfig.versionName
+        applicationId defaultConfigs.appId
+        minSdkVersion defaultConfigs.minSdkVersion
+        targetSdkVersion defaultConfigs.targetSdkVersion
+        versionCode defaultConfigs.versionCode
+        versionName defaultConfigs.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
     }
@@ -44,12 +44,12 @@ android {
 
     productFlavors {
         _test {
-            applicationId rootProject.ext.defaultConfig.appIdUat
-            resValue 'string', 'app_name', rootProject.ext.appName.uat
+            applicationId appIds.uat
+            resValue 'string', 'app_name', appNames.uat
         }
         _dev {
-            applicationId rootProject.ext.defaultConfig.appIdDev
-            resValue 'string', 'app_name', rootProject.ext.appName.dev
+            applicationId appIds.dev
+            resValue 'string', 'app_name', appNames.dev
         }
     }
 
@@ -77,7 +77,7 @@ MobSDK {
                 appId "100371282"
                 appKey "aed9b0303e3ed1e27bae87c33761161d"
             }
-            QZone{
+            QZone {
                 appId "100371282"
                 appKey "aed9b0303e3ed1e27bae87c33761161d"
             }
@@ -96,13 +96,20 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile rootProject.ext.dependencies.appcompat_v7
+    implementation deps.okhttp3
+    implementation deps.okhttp3_logging_interceptor
+    implementation deps.rxjava2
+    implementation deps.rxandroid2
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    compile deps.support.appcompat
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':utils')
-    compile rootProject.ext.dependencies.kotlinStdlib
+    compile deps.kotlin.stdlib
     //    implementation project(':rxjava2')
     implementation project(':GoogleBasicRxJavaSample')
+    implementation project(':JcFramework')
 }
 task A {
     print("hello word!")
@@ -114,12 +121,12 @@ static def releaseTime() {
     return date.toGMTString()
 }
 
-def  getAppNameByChannel(def name) {
+def getAppNameByChannel(def name) {
     def appName = name
     if ("_test" == name) {
-        appName = rootProject.ext.appName.uat
+        appName = appNames.uat
     } else if ("_dev" == name) {
-        appName = rootProject.ext.appName.dev
+        appName = appNames.dev
     }
     return appName
 }

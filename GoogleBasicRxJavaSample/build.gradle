@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion build_versions.target_sdk
-//    buildToolsVersion build_versions.build_tools
-
+    compileSdkVersion 26
+    buildToolsVersion defaultConfigs.buildToolsVersion
     defaultConfig {
-//        applicationId "com.example.android.persistence"
-        minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion defaultConfigs.minSdkVersion
+        targetSdkVersion defaultConfigs.targetSdkVersion
+        versionCode defaultConfigs.versionCode
+        versionName defaultConfigs.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
     }
 
     compileOptions {
@@ -28,7 +27,7 @@ android {
 
 dependencies {
     // Support libraries
-    compile deps.support.app_compat
+    compile deps.support.appcompat
     compile deps.support.v4
     compile deps.support.design
     // Architecture components
@@ -40,7 +39,7 @@ dependencies {
     compile deps.room.rxjava2
 
     // RxJava
-    compile deps.rx_android
+    compile deps.rxandroid2
     compile deps.rxjava2
 
     // Dependencies for local unit tests
@@ -72,6 +71,6 @@ dependencies {
     // Resolve conflicts between main and test APK:
     androidTestCompile deps.support.annotations
     androidTestCompile deps.support.v4
-    androidTestCompile deps.support.app_compat
+    androidTestCompile deps.support.appcompat
     androidTestCompile deps.support.design
 }

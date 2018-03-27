@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.google.rxjava.sample"/>
+          package="com.google.rxjava.sample">
+
+
+    <application>
+        <activity android:name=".ui.UserActivity"/>
+    </application>
+</manifest>
+

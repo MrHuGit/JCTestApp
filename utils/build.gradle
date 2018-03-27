@@ -2,17 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
-
+    compileSdkVersion defaultConfigs.compileSdkVersion
+    buildToolsVersion defaultConfigs.buildToolsVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.defaultConfig.minSdkVersion
-        targetSdkVersion rootProject.ext.defaultConfig.targetSdkVersion
-        versionCode rootProject.ext.defaultConfig.versionCode
-        versionName rootProject.ext.defaultConfig.versionName
+        minSdkVersion defaultConfigs.minSdkVersion
+        targetSdkVersion defaultConfigs.targetSdkVersion
+        versionCode defaultConfigs.versionCode
+        versionName defaultConfigs.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-
+        flavorDimensions "versionCode"
     }
     buildTypes {
         release {
@@ -41,6 +39,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile rootProject.ext.dependencies.kotlinStdlib
+    compile deps.kotlin.stdlib
     testCompile 'junit:junit:4.12'
 }

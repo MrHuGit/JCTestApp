@@ -25,4 +25,8 @@ public final class PackageUtils {
         }
         return packageInfo;
     }
+
+    public static String getPackName(Context context){
+        return context.getPackageName();
+    }
 }

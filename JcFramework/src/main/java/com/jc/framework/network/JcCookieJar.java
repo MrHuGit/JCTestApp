@@ -11,5 +11,8 @@ import okhttp3.CookieJar;
 
 public interface JcCookieJar extends CookieJar{
 
+    /**
+     * 清除
+     */
     void clear();
 }

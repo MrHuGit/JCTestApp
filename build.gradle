@@ -2,7 +2,7 @@
 
 buildscript {
     apply from: "configuration.gradle"
-    apply from: 'googleVersions.gradle'
+//    apply from: 'googleVersions.gradle'
     addRepos(repositories)
     dependencies {
         classpath deps.android_gradle_plugin

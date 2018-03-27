@@ -12,32 +12,39 @@ import com.jc.framework.exception.StopInstantiatedException;
  */
 
 public final class LogUtils {
-    private LogUtils(){throw new StopInstantiatedException();}
-    private static String TAG="";
-    private static boolean DEBUG=true;
+    private LogUtils() {
+        throw new StopInstantiatedException();
+    }
 
-    public void v(String ...s){
-        if (s!=null&&DEBUG){
+    private static String TAG = "JcFramework";
+    protected static boolean Show = false;
+
+    public static void v(String... s) {
+        if (s != null && Show) {
             Log.v(TAG, StringUtils.buildString(s));
         }
     }
-    public void d(String ...s){
-        if (s!=null&&DEBUG){
+
+    public static void d(String... s) {
+        if (s != null && Show) {
             Log.d(TAG, StringUtils.buildString(s));
         }
     }
-    public void i(String ...s){
-        if (s!=null&&DEBUG){
+
+    public static void i(String... s) {
+        if (s != null && Show) {
             Log.i(TAG, StringUtils.buildString(s));
         }
     }
-    public void w(String ...s){
-        if (s!=null&&DEBUG){
+
+    public static void w(String... s) {
+        if (s != null && Show) {
             Log.w(TAG, StringUtils.buildString(s));
         }
     }
-    public void e(String ...s){
-        if (s!=null&&DEBUG){
+
+    public static void e(String... s) {
+        if (s != null && Show) {
             Log.e(TAG, StringUtils.buildString(s));
         }
     }
